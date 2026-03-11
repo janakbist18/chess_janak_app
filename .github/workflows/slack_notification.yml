@@ -1,0 +1,36 @@
+name: Slack Notification
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  notify-slack:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Slack Notification
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": "🚀 New code pushed to GitHub repository!"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+          -name :slack notify
+          uses: slackapi/slack-github-action@v1.24.0
+          with:
+            channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
+          payload: |
+            {
+                "text": "${{ job.status == 'success' && ':white_check_mark: *Job Succeeded!*' || ':x: *Job Failed!*' }}\n*Repository:* ${{ github.repository }}\n*Branch:* ${{ github.ref }}\n*Commit:* ${{ github.sha }}\n*Workflow:* ${{ github.workflow }}\n*Run ID:* ${{ github.run_id }}"
+
+            }
+        env:
+            SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+        if: always() # Ensure the notification is sent regardless of job success or failure
