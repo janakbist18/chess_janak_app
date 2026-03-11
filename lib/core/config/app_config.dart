@@ -1,10 +1,10 @@
-/// Configuration for the Chess Janak application
-class AppConfig {
-  static const String appName = 'Chess Janak';
-  static const String appVersion = '1.0.0';
-  static const String packageName = 'com.chessjanak.app';
+import 'env.dart';
 
-  // Environment configuration
-  static const bool isProduction = false;
-  static const bool isDebugMode = !isProduction;
+class AppConfig {
+  const AppConfig._();
+
+  static String get appName => Env.appName;
+  static String get apiBaseUrl => Env.apiBaseUrl;
+  static String get webBaseUrl => Env.webBaseUrl;
+  static String get wsBaseUrl => Env.wsBaseUrl;
 }

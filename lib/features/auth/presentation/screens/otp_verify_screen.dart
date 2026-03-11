@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import '../../../../core/widgets/premium_card.dart';
 
-/// OTP verification screen
-class OtpVerifyScreen extends StatefulWidget {
-  const OtpVerifyScreen({Key? key}) : super(key: key);
+class OtpVerifyScreen extends StatelessWidget {
+  const OtpVerifyScreen({super.key});
 
-  @override
-  State<OtpVerifyScreen> createState() => _OtpVerifyScreenState();
-}
-
-class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Verify OTP')),
-      body: const Center(child: Text('OTP Verify Screen')),
+    return const Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(24),
+          child: Center(
+            child: PremiumCard(
+              child: Text(
+                'OTP Verify Screen\n\nPhase 7 will implement OTP input, resend OTP, and verification flow.',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

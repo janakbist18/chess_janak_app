@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'core/config/env.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'app.dart';
+import 'shared/providers/app_providers.dart';
 
 Future<void> bootstrap() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
 
-  // Initialize environment variables
-  await Env.init();
-
-  // TODO: Initialize Firebase
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
-
-  // TODO: Initialize other services
-  // - Authentication
-  // - Local storage
-  // - Network clients
-
-  runApp(const ProviderScope(child: App()));
+  runApp(
+    ProviderScope(
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(prefs),
+      ],
+      child: const ChessJanakApp(),
+    ),
+  );
 }

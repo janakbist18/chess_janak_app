@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import '../../../../core/widgets/premium_card.dart';
 
-/// Reset password screen
-class ResetPasswordScreen extends StatefulWidget {
-  const ResetPasswordScreen({Key? key}) : super(key: key);
+class ResetPasswordScreen extends StatelessWidget {
+  const ResetPasswordScreen({super.key});
 
-  @override
-  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
-}
-
-class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Reset Password')),
-      body: const Center(child: Text('Reset Password Screen')),
+    return const Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(24),
+          child: Center(
+            child: PremiumCard(
+              child: Text(
+                'Reset Password Screen\n\nPhase 7 will implement OTP + new password reset form.',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import '../../../../core/widgets/premium_card.dart';
 
-/// Forgot password screen
-class ForgotPasswordScreen extends StatefulWidget {
-  const ForgotPasswordScreen({Key? key}) : super(key: key);
+class ForgotPasswordScreen extends StatelessWidget {
+  const ForgotPasswordScreen({super.key});
 
-  @override
-  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
-}
-
-class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Forgot Password')),
-      body: const Center(child: Text('Forgot Password Screen')),
+    return const Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(24),
+          child: Center(
+            child: PremiumCard(
+              child: Text(
+                'Forgot Password Screen\n\nPhase 7 will implement reset OTP request flow.',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

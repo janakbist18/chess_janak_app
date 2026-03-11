@@ -1,25 +1,14 @@
-/// Environment variables configuration
 class Env {
-  // API Configuration
-  static const String apiBaseUrl = String.fromEnvironment(
-    'API_BASE_URL',
-    defaultValue: 'https://api.chessjanak.com',
-  );
+  const Env._();
 
-  static const String wsBaseUrl = String.fromEnvironment(
-    'WS_BASE_URL',
-    defaultValue: 'wss://ws.chessjanak.com',
-  );
+  static const String appName = 'Chess Janak';
 
-  // Firebase Configuration
-  static const String firebaseProjectId = String.fromEnvironment(
-    'FIREBASE_PROJECT_ID',
-    defaultValue: 'chess-janak',
-  );
+  // Android emulator -> 10.0.2.2
+  // Physical device -> your laptop local IP, e.g. 192.168.1.5
+  static const String apiBaseUrl = 'http://10.0.2.2:8000/api';
+  static const String webBaseUrl = 'http://10.0.2.2:8000';
+  static const String wsBaseUrl = 'ws://10.0.2.2:8000';
 
-  // Google OAuth Configuration
-  static const String googleClientId = String.fromEnvironment(
-    'GOOGLE_CLIENT_ID',
-    defaultValue: '',
-  );
+  static const Duration connectTimeout = Duration(seconds: 20);
+  static const Duration receiveTimeout = Duration(seconds: 20);
 }

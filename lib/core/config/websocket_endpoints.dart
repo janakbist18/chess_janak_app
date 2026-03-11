@@ -1,13 +1,12 @@
-import 'env.dart';
+import 'app_config.dart';
 
-/// WebSocket endpoints configuration
-class WebSocketEndpoints {
-  static const String baseUrl = Env.wsBaseUrl;
+class WebsocketEndpoints {
+  const WebsocketEndpoints._();
 
-  // Channel paths
-  static const String gameRoom = '/game/{roomId}';
-  static const String chat = '/chat/{roomId}';
-  static const String videoCall = '/call/{roomId}';
-  static const String notifications = '/notifications';
-  static const String presence = '/presence';
+  static String roomSocket({
+    required String roomId,
+    required String accessToken,
+  }) {
+    return '${AppConfig.wsBaseUrl}/ws/room/$roomId/?token=$accessToken';
+  }
 }

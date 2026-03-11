@@ -1,32 +1,26 @@
-import 'env.dart';
+import 'app_config.dart';
 
-/// API endpoints configuration
 class ApiEndpoints {
-  static const String baseUrl = Env.apiBaseUrl;
+  const ApiEndpoints._();
 
-  // Auth endpoints
-  static const String login = '/auth/login';
-  static const String register = '/auth/register';
-  static const String verifyOtp = '/auth/verify-otp';
-  static const String forgotPassword = '/auth/forgot-password';
-  static const String resetPassword = '/auth/reset-password';
-  static const String googleSignIn = '/auth/google-signin';
-  static const String refreshToken = '/auth/refresh-token';
+  static String get base => AppConfig.apiBaseUrl;
 
-  // Profile endpoints
-  static const String getProfile = '/profile';
-  static const String updateProfile = '/profile/update';
-  static const String uploadAvatar = '/profile/avatar';
+  static String get register => '$base/auth/register/';
+  static String get verifyOtp => '$base/auth/verify-otp/';
+  static String get resendOtp => '$base/auth/resend-otp/';
+  static String get login => '$base/auth/login/';
+  static String get forgotPassword => '$base/auth/forgot-password/';
+  static String get resetPassword => '$base/auth/reset-password/';
+  static String get googleSignIn => '$base/auth/google/';
+  static String get me => '$base/auth/me/';
+  static String get tokenRefresh => '$base/auth/token/refresh/';
 
-  // Rooms endpoints
-  static const String createRoom = '/rooms/create';
-  static const String joinRoom = '/rooms/join';
-  static const String getRooms = '/rooms';
-  static const String getRoomDetails = '/rooms/{roomId}';
-  static const String leaveRoom = '/rooms/{roomId}/leave';
+  static String get createRoom => '$base/rooms/create/';
+  static String get joinRoom => '$base/rooms/join/';
+  static String get myRooms => '$base/rooms/mine/';
+  static String roomDetail(String roomId) => '$base/rooms/$roomId/';
+  static String inviteLookup(String inviteCode) => '$base/rooms/invite/$inviteCode/';
 
-  // Match endpoints
-  static const String getMatches = '/matches';
-  static const String getMatchDetails = '/matches/{matchId}';
-  static const String getMatchHistory = '/matches/history';
+  static String roomMatch(String roomId) => '$base/chess/room/$roomId/';
+  static String roomMoves(String roomId) => '$base/chess/room/$roomId/moves/';
 }
