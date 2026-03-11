@@ -1,0 +1,19 @@
+name: Daily Slack Reminder
+
+on:
+  schedule:
+    - cron: '15 12 * * *'   # 6:00 PM Nepal time (12:15 UTC)
+  workflow_dispatch:
+
+jobs:
+  send-reminder:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Slack reminder
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":"⏰ Daily reminder: GitHub ma push/pull gara at the end of the day."}' \
+          $SLACK_WEBHOOK_URL
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
