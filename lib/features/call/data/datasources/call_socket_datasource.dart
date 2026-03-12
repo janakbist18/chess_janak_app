@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/signaling_message_model.dart';
-import '../../../core/websocket/socket_client.dart';
-import '../../../core/websocket/socket_message.dart';
+import '../../../../core/websocket/socket_client.dart';
+import '../../../../core/websocket/socket_message.dart';
 
 /// Call socket data source
 class CallSocketDataSource {

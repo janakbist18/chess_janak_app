@@ -9,13 +9,13 @@ class HomeActionCard extends StatelessWidget {
   final Color? backgroundColor;
 
   const HomeActionCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.description,
     required this.icon,
     required this.onTap,
     this.backgroundColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

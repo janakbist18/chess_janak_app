@@ -9,13 +9,13 @@ class EmptyState extends StatelessWidget {
   final double iconSize;
 
   const EmptyState({
-    Key? key,
+    super.key,
     this.title,
     this.message,
     this.icon,
     this.action,
     this.iconSize = 80.0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

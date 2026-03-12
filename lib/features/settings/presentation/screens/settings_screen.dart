@@ -10,7 +10,6 @@ class SettingsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themeMode = ref.watch(themeModeProvider);
-    final notifier = ref.read(themeModeProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Settings')),
@@ -30,7 +29,9 @@ class SettingsScreen extends ConsumerWidget {
                 groupValue: themeMode,
                 title: const Text('System default'),
                 onChanged: (value) {
-                  if (value != null) notifier.setThemeMode(value);
+                  if (value != null) {
+                    ref.read(themeModeProvider.notifier).setThemeMode(value);
+                  }
                 },
               ),
               RadioListTile<ThemeMode>(
@@ -38,7 +39,9 @@ class SettingsScreen extends ConsumerWidget {
                 groupValue: themeMode,
                 title: const Text('Light mode'),
                 onChanged: (value) {
-                  if (value != null) notifier.setThemeMode(value);
+                  if (value != null) {
+                    ref.read(themeModeProvider.notifier).setThemeMode(value);
+                  }
                 },
               ),
               RadioListTile<ThemeMode>(
@@ -46,7 +49,9 @@ class SettingsScreen extends ConsumerWidget {
                 groupValue: themeMode,
                 title: const Text('Dark mode'),
                 onChanged: (value) {
-                  if (value != null) notifier.setThemeMode(value);
+                  if (value != null) {
+                    ref.read(themeModeProvider.notifier).setThemeMode(value);
+                  }
                 },
               ),
             ],

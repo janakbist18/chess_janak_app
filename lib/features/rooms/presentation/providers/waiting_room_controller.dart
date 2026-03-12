@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:state_notifier/state_notifier.dart';
 import '../../data/repositories/rooms_repository.dart';
 
 /// Waiting room controller
@@ -20,6 +21,6 @@ class WaitingRoomController extends StateNotifier<bool> {
 /// Provider for waiting room controller
 final waitingRoomControllerProvider =
     StateNotifierProvider<WaitingRoomController, bool>((ref) {
-      final repository = ref.watch(roomsRepositoryProvider);
-      return WaitingRoomController(repository);
-    });
+  final repository = ref.watch(roomsRepositoryProvider);
+  return WaitingRoomController(repository);
+});

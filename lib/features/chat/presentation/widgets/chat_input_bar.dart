@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ChatInputBar extends StatefulWidget {
   final Function(String) onSendMessage;
 
-  const ChatInputBar({Key? key, required this.onSendMessage}) : super(key: key);
+  const ChatInputBar({super.key, required this.onSendMessage});
 
   @override
   State<ChatInputBar> createState() => _ChatInputBarState();

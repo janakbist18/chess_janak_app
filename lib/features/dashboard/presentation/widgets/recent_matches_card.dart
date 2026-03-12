@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Recent matches card widget
 class RecentMatchesCard extends StatelessWidget {
-  const RecentMatchesCard({Key? key}) : super(key: key);
+  const RecentMatchesCard({super.key});
 
   @override
   Widget build(BuildContext context) {

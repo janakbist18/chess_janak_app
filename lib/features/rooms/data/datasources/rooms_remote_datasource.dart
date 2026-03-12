@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:chess_janak_app/core/network/dio_provider.dart'
+    show apiClientProvider;
 import '../models/room_model.dart';
 import '../models/create_room_response_model.dart';
-import '../../../core/network/api_client.dart';
+import '../../../../core/network/api_client.dart';
 
 /// Rooms remote data source
 class RoomsRemoteDataSource {

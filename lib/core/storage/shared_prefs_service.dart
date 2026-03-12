@@ -11,7 +11,17 @@ class SharedPrefsService {
     return _prefs.setString(key, value);
   }
 
+  int? getInt(String key) => _prefs.getInt(key);
+
+  Future<bool> setInt(String key, int value) {
+    return _prefs.setInt(key, value);
+  }
+
   Future<bool> remove(String key) {
     return _prefs.remove(key);
+  }
+
+  Future<bool> clear() {
+    return _prefs.clear();
   }
 }

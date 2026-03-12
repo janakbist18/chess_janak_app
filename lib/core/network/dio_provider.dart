@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../config/env.dart';
 import '../storage/secure_storage_service.dart';
 import 'auth_interceptor.dart';
+import 'api_client.dart';
 
 final dioProvider = Provider<Dio>((ref) {
   final secureStorage = ref.watch(secureStorageServiceProvider);
@@ -28,4 +29,9 @@ final dioProvider = Provider<Dio>((ref) {
   );
 
   return dio;
+});
+
+final apiClientProvider = Provider<ApiClient>((ref) {
+  final dio = ref.watch(dioProvider);
+  return ApiClient(dio);
 });

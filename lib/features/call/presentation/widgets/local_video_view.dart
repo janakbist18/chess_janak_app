@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Local video view widget
 class LocalVideoView extends StatelessWidget {
-  const LocalVideoView({Key? key}) : super(key: key);
+  const LocalVideoView({super.key});
 
   @override
   Widget build(BuildContext context) {

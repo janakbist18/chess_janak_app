@@ -1,7 +1,8 @@
+import 'package:chess_janak_app/core/network/dio_provider.dart' show apiClientProvider;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/profile_model.dart';
-import '../../../core/network/api_client.dart';
-import '../../../core/config/api_endpoints.dart';
+import '../../../../core/network/api_client.dart';
+import '../../../../core/config/api_endpoints.dart';
 
 /// Profile remote data source
 class ProfileRemoteDataSource {

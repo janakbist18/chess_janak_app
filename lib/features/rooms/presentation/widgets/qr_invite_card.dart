@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class QrInviteCard extends StatelessWidget {
   final String qrData;
 
-  const QrInviteCard({Key? key, required this.qrData}) : super(key: key);
+  const QrInviteCard({super.key, required this.qrData});
 
   @override
   Widget build(BuildContext context) {

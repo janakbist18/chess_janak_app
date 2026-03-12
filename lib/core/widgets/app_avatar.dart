@@ -10,14 +10,14 @@ class AppAvatar extends StatelessWidget {
   final VoidCallback? onTap;
 
   const AppAvatar({
-    Key? key,
+    super.key,
     this.imageUrl,
     this.initials,
     this.size = 48.0,
     this.backgroundColor,
     this.textColor,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

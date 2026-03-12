@@ -4,6 +4,7 @@ class ApiEndpoints {
   const ApiEndpoints._();
 
   static String get base => AppConfig.apiBaseUrl;
+  static String get wsBase => AppConfig.wsBaseUrl;
 
   static String get register => '$base/auth/register/';
   static String get verifyOtp => '$base/auth/verify-otp/';
@@ -19,7 +20,8 @@ class ApiEndpoints {
   static String get joinRoom => '$base/rooms/join/';
   static String get myRooms => '$base/rooms/mine/';
   static String roomDetail(String roomId) => '$base/rooms/$roomId/';
-  static String inviteLookup(String inviteCode) => '$base/rooms/invite/$inviteCode/';
+  static String inviteLookup(String inviteCode) =>
+      '$base/rooms/invite/$inviteCode/';
 
   static String roomMatch(String roomId) => '$base/chess/room/$roomId/';
   static String roomMoves(String roomId) => '$base/chess/room/$roomId/moves/';

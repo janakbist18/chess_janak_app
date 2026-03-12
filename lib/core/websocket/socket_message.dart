@@ -1,4 +1,3 @@
-import 'dart:async';
 
 /// Socket message model for WebSocket communication
 class SocketMessage {

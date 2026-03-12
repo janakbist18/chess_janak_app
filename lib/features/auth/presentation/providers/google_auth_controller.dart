@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:state_notifier/state_notifier.dart';
 import 'auth_state.dart';
 
 /// Google auth controller
@@ -19,5 +20,5 @@ class GoogleAuthController extends StateNotifier<AuthState> {
 /// Provider for Google auth controller
 final googleAuthControllerProvider =
     StateNotifierProvider<GoogleAuthController, AuthState>((ref) {
-      return GoogleAuthController();
-    });
+  return GoogleAuthController();
+});
