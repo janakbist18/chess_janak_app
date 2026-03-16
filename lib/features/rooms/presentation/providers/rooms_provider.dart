@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../auth/presentation/providers/auth_provider.dart';
 
 /// Provider for user's active rooms (games)
 final userRoomsProvider =
@@ -91,7 +92,5 @@ final playerColorProvider =
 
 /// Get current player ID (from auth provider)
 final currentPlayerIdProvider = Provider<String?>((ref) {
-  // This assumes you have an auth provider
-  // Adjust this to match your actual auth provider
-  return null; // TODO: Get from authStateProvider
+  return ref.watch(currentUserIdProvider);
 });

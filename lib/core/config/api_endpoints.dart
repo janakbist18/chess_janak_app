@@ -25,4 +25,8 @@ class ApiEndpoints {
 
   static String roomMatch(String roomId) => '$base/chess/room/$roomId/';
   static String roomMoves(String roomId) => '$base/chess/room/$roomId/moves/';
+
+  static String get profiles => '$base/profiles/';
+  static String profileDetail(String userId) => '$base/profiles/$userId/';
+  static String profileAvatar(String userId) => '$base/profiles/$userId/avatar/';
 }
