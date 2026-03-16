@@ -112,7 +112,8 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
                       decoration: BoxDecoration(
                         color: Colors.blue.withValues(alpha: 26),
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.blue.withValues(alpha: 77)),
+                        border: Border.all(
+                            color: Colors.blue.withValues(alpha: 77)),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -213,9 +214,8 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
 
                   // Submit Button
                   ElevatedButton(
-                    onPressed: authState.isLoading
-                        ? null
-                        : _handleForgotPassword,
+                    onPressed:
+                        authState.isLoading ? null : _handleForgotPassword,
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       backgroundColor: Colors.amber,

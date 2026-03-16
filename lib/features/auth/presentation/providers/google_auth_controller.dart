@@ -11,7 +11,7 @@ class GoogleAuthController extends StateNotifier<AuthState> {
   final GoogleSignInService _googleSignInService;
 
   GoogleAuthController(this._authRemoteDataSource, this._googleSignInService)
-    : super(const AuthState());
+      : super(const AuthState());
 
   /// Sign in with Google
   ///
@@ -20,8 +20,8 @@ class GoogleAuthController extends StateNotifier<AuthState> {
     state = state.copyWith(isLoading: true, error: null);
     try {
       // Initialize and get Google user
-      final GoogleSignInAccount? googleUser = await _googleSignInService
-          .signIn();
+      final GoogleSignInAccount? googleUser =
+          await _googleSignInService.signIn();
 
       if (googleUser == null) {
         // User cancelled the sign-in
@@ -76,7 +76,7 @@ class GoogleAuthController extends StateNotifier<AuthState> {
 /// Provider for Google auth controller
 final googleAuthControllerProvider =
     StateNotifierProvider<GoogleAuthController, AuthState>((ref) {
-      final authRemoteDataSource = ref.watch(authRemoteDataSourceProvider);
-      final googleSignInService = ref.watch(googleSignInServiceProvider);
-      return GoogleAuthController(authRemoteDataSource, googleSignInService);
-    });
+  final authRemoteDataSource = ref.watch(authRemoteDataSourceProvider);
+  final googleSignInService = ref.watch(googleSignInServiceProvider);
+  return GoogleAuthController(authRemoteDataSource, googleSignInService);
+});
