@@ -163,7 +163,7 @@ class ProfileScreen extends ConsumerWidget {
                             ),
                           ),
                         );
-                      }).toList(),
+                      }),
                     ],
                   );
                 },

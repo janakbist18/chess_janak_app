@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:state_notifier/state_notifier.dart';
 import '../../data/models/chat_message_model.dart';
 import '../../data/repositories/chat_repository.dart';
 

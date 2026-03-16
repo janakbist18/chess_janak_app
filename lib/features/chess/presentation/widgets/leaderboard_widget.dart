@@ -8,11 +8,11 @@ class LeaderboardWidget extends StatelessWidget {
   final Function(PlayerModel)? onPlayerTapped;
 
   const LeaderboardWidget({
-    Key? key,
+    super.key,
     required this.players,
     this.currentPlayerId,
     this.onPlayerTapped,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -64,12 +64,12 @@ class LeaderboardTile extends StatelessWidget {
   final VoidCallback? onTap;
 
   const LeaderboardTile({
-    Key? key,
+    super.key,
     required this.rank,
     required this.player,
     this.isCurrentPlayer = false,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +145,7 @@ class LeaderboardTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    '${player.rating.toStringAsFixed(0)}',
+                    player.rating.toStringAsFixed(0),
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Colors.blue,

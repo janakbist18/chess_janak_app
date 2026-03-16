@@ -8,11 +8,11 @@ class PlayerInfoWidget extends StatelessWidget {
   final bool isWhitePlayer;
 
   const PlayerInfoWidget({
-    Key? key,
+    super.key,
     required this.player,
     this.isCurrentPlayer = false,
     this.isWhitePlayer = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

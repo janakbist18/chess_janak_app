@@ -1,7 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:state_notifier/state_notifier.dart';
 import '../../data/repositories/call_repository.dart';
-import '../../data/models/signaling_message_model.dart';
 
 /// WebRTC call controller
 class WebRtcCallController extends StateNotifier<Map<String, dynamic>> {

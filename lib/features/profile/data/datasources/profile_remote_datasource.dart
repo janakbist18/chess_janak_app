@@ -1,14 +1,9 @@
-import 'package:chess_janak_app/core/network/dio_provider.dart' show apiClientProvider;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/profile_model.dart';
-import '../../../../core/network/api_client.dart';
-import '../../../../core/config/api_endpoints.dart';
 
 /// Profile remote data source
 class ProfileRemoteDataSource {
-  final ApiClient _apiClient;
-
-  ProfileRemoteDataSource(this._apiClient);
+  ProfileRemoteDataSource();
 
   Future<ProfileModel> getProfile(String userId) async {
     // TODO: Implement get profile API call
@@ -30,9 +25,7 @@ class ProfileRemoteDataSource {
 }
 
 /// Provider for profile remote data source
-final profileRemoteDataSourceProvider = Provider<ProfileRemoteDataSource>((
-  ref,
-) {
-  final apiClient = ref.watch(apiClientProvider);
-  return ProfileRemoteDataSource(apiClient);
+final profileRemoteDataSourceProvider =
+    Provider<ProfileRemoteDataSource>((ref) {
+  return ProfileRemoteDataSource();
 });

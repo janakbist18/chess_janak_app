@@ -39,7 +39,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: RouteNames.otpVerify,
-        builder: (context, state) => const OtpVerifyScreen(),
+        builder: (context, state) {
+          final email = state.uri.queryParameters['email'] ?? '';
+          return OtpVerifyScreen(email: email);
+        },
       ),
       GoRoute(
         path: RouteNames.forgotPassword,

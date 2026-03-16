@@ -55,7 +55,7 @@ class DashboardScreen extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Welcome back, ${user?.name ?? 'Player'}! 👋',
+                            'Welcome back, ${user?.username ?? 'Player'}! 👋',
                             style: const TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,

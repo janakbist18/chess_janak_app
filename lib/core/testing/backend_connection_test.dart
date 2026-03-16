@@ -7,7 +7,7 @@ import '../../core/websocket/socket_client.dart';
 /// Backend connection health check screen
 /// Use this to verify Django backend is working before testing features
 class BackendConnectionTest extends ConsumerStatefulWidget {
-  const BackendConnectionTest({Key? key}) : super(key: key);
+  const BackendConnectionTest({super.key});
 
   @override
   ConsumerState<BackendConnectionTest> createState() =>
@@ -59,7 +59,7 @@ class _BackendConnectionTestState extends ConsumerState<BackendConnectionTest> {
       addResult(
         'API Root',
         true,
-        'Successfully connected to ${rootUrl}',
+        'Successfully connected to $rootUrl',
         response.statusCode,
       );
     } catch (e) {

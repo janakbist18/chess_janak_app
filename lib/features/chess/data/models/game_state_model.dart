@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 /// Game state model
 class GameStateModel {
   final String gameId;

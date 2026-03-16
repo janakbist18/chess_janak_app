@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../domain/entities/auth_user.dart';
 import '../models/auth_user_model.dart';
 import '../models/login_request_model.dart';
 import '../models/register_request_model.dart';

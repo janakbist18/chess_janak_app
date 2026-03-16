@@ -7,10 +7,10 @@ class GameTimerWidget extends ConsumerWidget {
   final bool isActive;
 
   const GameTimerWidget({
-    Key? key,
+    super.key,
     required this.isWhiteTimer,
     required this.isActive,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../widgets/player_info_widget.dart';
 import '../widgets/game_history_widget.dart';
-import '../providers/player_provider.dart';
+import '../providers/game_provider.dart';
 import '../../data/models/game_history_model.dart';
 
 class PlayerProfileScreen extends ConsumerWidget {
@@ -15,9 +14,8 @@ class PlayerProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final playerAsync = ref.watch(currentPlayerProvider(playerId));
-    // TODO: Load game history from provider
-    final gameHistoryAsync = const AsyncValue<List<GameHistoryModel>>.data([]);
+    final gameStatsAsync = ref.watch(userGameStatsProvider);
+    final gameHistoryAsync = ref.watch(gameMoveHistoryProvider(playerId));
 
     return Scaffold(
       appBar: AppBar(
@@ -30,60 +28,88 @@ class PlayerProfileScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: playerAsync.when(
-        data: (player) => SingleChildScrollView(
+      body: gameStatsAsync.when(
+        data: (stats) => SingleChildScrollView(
           child: Column(
             children: [
-              // Player card
+              // Player stats section
               Padding(
                 padding: const EdgeInsets.all(16),
-                child: PlayerInfoWidget(
-                  player: player,
-                  isCurrentPlayer: true,
-                  isWhitePlayer: true,
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Player Statistics',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            _buildStatItem(
+                              context,
+                              'Total Games',
+                              '${stats['total_games'] ?? 0}',
+                            ),
+                            _buildStatItem(
+                              context,
+                              'Wins',
+                              '${stats['wins'] ?? 0}',
+                            ),
+                            _buildStatItem(
+                              context,
+                              'Losses',
+                              '${stats['losses'] ?? 0}',
+                            ),
+                            _buildStatItem(
+                              context,
+                              'Draws',
+                              '${stats['draws'] ?? 0}',
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          'Win Rate: ${(stats['win_percentage'] ?? 0).toStringAsFixed(1)}%',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-              // Stats section
+              // Game history section
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Card(
                   child: Padding(
                     padding: const EdgeInsets.all(16),
-                    child: GridView(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1.5,
+                    child: gameHistoryAsync.when(
+                      data: (history) => history.isEmpty
+                          ? const Center(
+                              child: Padding(
+                                padding: EdgeInsets.all(16),
+                                child: Text('No games found'),
+                              ),
+                            )
+                          : ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: history.length,
+                              itemBuilder: (context, index) => GameHistoryTile(
+                                game:
+                                    _convertToGameHistoryModel(history[index]),
+                              ),
+                            ),
+                      loading: () => const Center(
+                        child: CircularProgressIndicator(),
                       ),
-                      children: [
-                        _buildStatCard(
-                          context,
-                          'Games Played',
-                          '${player.gamesPlayed}',
-                          Colors.blue,
-                        ),
-                        _buildStatCard(
-                          context,
-                          'Win Rate',
-                          '${player.winRate.toStringAsFixed(1)}%',
-                          Colors.green,
-                        ),
-                        _buildStatCard(
-                          context,
-                          'Wins',
-                          '${player.wins}',
-                          Colors.blue,
-                        ),
-                        _buildStatCard(
-                          context,
-                          'Rating',
-                          '${player.rating.toStringAsFixed(0)}',
-                          Colors.orange,
-                        ),
-                      ],
+                      error: (err, stack) => Center(
+                        child: Text('Error: $err'),
+                      ),
                     ),
                   ),
                 ),
@@ -130,15 +156,20 @@ class PlayerProfileScreen extends ConsumerWidget {
               gameHistoryAsync.when(
                 data: (games) => SizedBox(
                   height: 400,
-                  child: GameHistoryListWidget(games: games.take(10).toList()),
+                  child: GameHistoryListWidget(
+                    games:
+                        games.take(10).map(_convertToGameHistoryModel).toList(),
+                  ),
                 ),
-                loading: () => const Padding(
-                  padding: EdgeInsets.all(16),
-                  child: CircularProgressIndicator(),
+                loading: () => const SizedBox(
+                  height: 400,
+                  child: Center(child: CircularProgressIndicator()),
                 ),
-                error: (error, stack) => Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text('Failed to load games: $error'),
+                error: (err, stack) => SizedBox(
+                  height: 400,
+                  child: Center(
+                    child: Text('Error loading games: $err'),
+                  ),
                 ),
               ),
             ],
@@ -163,35 +194,47 @@ class PlayerProfileScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildStatCard(
-      BuildContext context, String label, String value, Color color) {
-    return Container(
-      margin: const EdgeInsets.all(4),
-      decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
-        border: Border.all(color: color, width: 1),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            value,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: color,
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
-          SizedBox(height: 4),
-          Text(
-            label,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: Colors.grey[600],
-                ),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
+  Widget _buildStatItem(BuildContext context, String label, String value) {
+    return Column(
+      children: [
+        Text(
+          value,
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          label,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Colors.grey[600],
+              ),
+          textAlign: TextAlign.center,
+        ),
+      ],
+    );
+  }
+
+  GameHistoryModel _convertToGameHistoryModel(dynamic g) {
+    if (g is GameHistoryModel) return g;
+    final map = g as Map<String, dynamic>;
+    return GameHistoryModel(
+      gameId: map['gameId'] ?? '',
+      whitePlayerId: map['whitePlayerId'] ?? '',
+      blackPlayerId: map['blackPlayerId'] ?? '',
+      whitePlayerName: map['whitePlayerName'] ?? 'Unknown',
+      blackPlayerName: map['blackPlayerName'] ?? 'Unknown',
+      whitePlayerAvatar: map['whitePlayerAvatar'],
+      blackPlayerAvatar: map['blackPlayerAvatar'],
+      result: map['result'] ?? 'draw',
+      winnerId: map['winnerId'],
+      endReason: map['endReason'] ?? 'unknown',
+      moves: List<String>.from(map['moves'] ?? []),
+      gameMode: map['gameMode'] ?? 'Blitz',
+      durationSeconds: map['durationSeconds'] ?? 0,
+      playedAt: map['playedAt'] is DateTime
+          ? map['playedAt']
+          : DateTime.parse(map['playedAt'] ?? DateTime.now().toIso8601String()),
     );
   }
 }

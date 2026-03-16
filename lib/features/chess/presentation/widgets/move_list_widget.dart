@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../data/models/chess_move_model.dart';
 
 /// Widget to display move history
 class MoveListWidget extends StatelessWidget {
@@ -8,11 +7,11 @@ class MoveListWidget extends StatelessWidget {
   final Function(int)? onMoveTapped;
 
   const MoveListWidget({
-    Key? key,
+    super.key,
     required this.moves,
     this.selectedMoveIndex,
     this.onMoveTapped,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

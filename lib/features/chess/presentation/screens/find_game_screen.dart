@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../providers/player_provider.dart';
 
 class FindGameScreen extends ConsumerWidget {
   const FindGameScreen({super.key});

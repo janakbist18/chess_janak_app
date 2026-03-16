@@ -1,15 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:chess_janak_app/core/network/dio_provider.dart'
-    show apiClientProvider;
 import '../models/room_model.dart';
 import '../models/create_room_response_model.dart';
-import '../../../../core/network/api_client.dart';
 
 /// Rooms remote data source
 class RoomsRemoteDataSource {
-  final ApiClient _apiClient;
-
-  RoomsRemoteDataSource(this._apiClient);
+  RoomsRemoteDataSource();
 
   Future<CreateRoomResponseModel> createRoom(
     String name, {
@@ -42,6 +37,5 @@ class RoomsRemoteDataSource {
 
 /// Provider for rooms remote data source
 final roomsRemoteDataSourceProvider = Provider<RoomsRemoteDataSource>((ref) {
-  final apiClient = ref.watch(apiClientProvider);
-  return RoomsRemoteDataSource(apiClient);
+  return RoomsRemoteDataSource();
 });

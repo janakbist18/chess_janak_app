@@ -7,10 +7,10 @@ class GameHistoryListWidget extends StatelessWidget {
   final Function(GameHistoryModel)? onGameTapped;
 
   const GameHistoryListWidget({
-    Key? key,
+    super.key,
     required this.games,
     this.onGameTapped,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -55,10 +55,10 @@ class GameHistoryTile extends StatelessWidget {
   final VoidCallback? onTap;
 
   const GameHistoryTile({
-    Key? key,
+    super.key,
     required this.game,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
