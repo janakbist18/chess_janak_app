@@ -8,12 +8,12 @@ class GameResultDialog extends StatelessWidget {
   final VoidCallback? onPlayAgain;
 
   const GameResultDialog({
-    Key? key,
+    super.key,
     required this.result,
     required this.resultReason,
     required this.onClose,
     this.onPlayAgain,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

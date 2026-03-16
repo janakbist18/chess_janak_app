@@ -8,9 +8,9 @@ class RoomController extends StateNotifier<RoomModel?> {
 
   RoomController(this._repository) : super(null);
 
-  Future<void> getRoomDetails(String roomId) async {
+  Future<void> getRoom(String roomId) async {
     try {
-      final room = await _repository.getRoomDetails(roomId);
+      final room = await _repository.getRoom(roomId);
       state = room;
     } catch (e) {
       state = null;
@@ -21,6 +21,6 @@ class RoomController extends StateNotifier<RoomModel?> {
 /// Provider for room controller
 final roomControllerProvider =
     StateNotifierProvider<RoomController, RoomModel?>((ref) {
-      final repository = ref.watch(roomsRepositoryProvider);
-      return RoomController(repository);
-    });
+  final repository = ref.watch(roomsRepositoryProvider);
+  return RoomController(repository);
+});

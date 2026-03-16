@@ -9,23 +9,18 @@ final themePersistenceProvider = Provider<ThemePersistence>((ref) {
   return ThemePersistence(prefs);
 });
 
-final themeModeProvider =
-    StateNotifierProvider<ThemeModeNotifier, ThemeMode>((ref) {
-  final persistence = ref.watch(themePersistenceProvider);
-  return ThemeModeNotifier(persistence)..loadTheme();
-});
-
-class ThemeModeNotifier extends StateNotifier<ThemeMode> {
-  ThemeModeNotifier(this._themePersistence) : super(ThemeMode.system);
-
-  final ThemePersistence _themePersistence;
-
-  Future<void> loadTheme() async {
-    state = await _themePersistence.loadThemeMode();
+// Simple notifier for theme mode
+class ThemeModeNotifier extends Notifier<ThemeMode> {
+  @override
+  ThemeMode build() {
+    return ThemeMode.system;
   }
 
-  Future<void> setThemeMode(ThemeMode mode) async {
+  void setThemeMode(ThemeMode mode) {
     state = mode;
-    await _themePersistence.saveThemeMode(mode);
   }
 }
+
+final themeModeProvider = NotifierProvider<ThemeModeNotifier, ThemeMode>(
+  ThemeModeNotifier.new,
+);

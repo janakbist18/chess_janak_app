@@ -5,8 +5,7 @@ class InviteCard extends StatelessWidget {
   final VoidCallback onCopy;
   final String inviteCode;
 
-  const InviteCard({Key? key, required this.onCopy, required this.inviteCode})
-    : super(key: key);
+  const InviteCard({super.key, required this.onCopy, required this.inviteCode});
 
   @override
   Widget build(BuildContext context) {

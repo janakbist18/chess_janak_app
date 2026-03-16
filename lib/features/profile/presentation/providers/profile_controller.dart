@@ -30,6 +30,6 @@ class ProfileController extends StateNotifier<ProfileModel?> {
 /// Provider for profile controller
 final profileControllerProvider =
     StateNotifierProvider<ProfileController, ProfileModel?>((ref) {
-      final repository = ref.watch(profileRepositoryProvider);
-      return ProfileController(repository);
-    });
+  final repository = ref.watch(profileRepositoryProvider);
+  return ProfileController(repository);
+});

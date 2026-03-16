@@ -1,4 +1,4 @@
-import '../../../domain/entities/auth_user.dart';
+import '../../domain/entities/auth_user.dart';
 
 /// Auth state
 class AuthState {

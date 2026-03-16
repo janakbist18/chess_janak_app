@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'color_palette.dart';
 
 class AppTheme {
@@ -32,7 +33,8 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: Colors.white,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: const BorderSide(color: ColorPalette.borderLight),
@@ -56,9 +58,11 @@ class AppTheme {
           ),
         ),
       ),
-      textTheme: base.textTheme.apply(
-        bodyColor: ColorPalette.textLight,
-        displayColor: ColorPalette.textLight,
+      textTheme: GoogleFonts.interTextTheme(
+        base.textTheme.apply(
+          bodyColor: ColorPalette.textLight,
+          displayColor: ColorPalette.textLight,
+        ),
       ),
     );
   }
@@ -91,7 +95,8 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: const Color(0xFF111827),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: const BorderSide(color: ColorPalette.borderDark),
@@ -115,9 +120,11 @@ class AppTheme {
           ),
         ),
       ),
-      textTheme: base.textTheme.apply(
-        bodyColor: ColorPalette.textDark,
-        displayColor: ColorPalette.textDark,
+      textTheme: GoogleFonts.interTextTheme(
+        base.textTheme.apply(
+          bodyColor: ColorPalette.textDark,
+          displayColor: ColorPalette.textDark,
+        ),
       ),
     );
   }

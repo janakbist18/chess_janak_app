@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class MoveHistoryPanel extends StatelessWidget {
   final List<String> moves;
 
-  const MoveHistoryPanel({Key? key, required this.moves}) : super(key: key);
+  const MoveHistoryPanel({super.key, required this.moves});
 
   @override
   Widget build(BuildContext context) {

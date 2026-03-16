@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../shared/providers/app_providers.dart';
 import 'shared_prefs_service.dart';
 
 /// Service for local caching
@@ -40,7 +41,7 @@ class LocalCacheService {
 }
 
 /// Provider for local cache
-final localCacheProvider = FutureProvider<LocalCacheService>((ref) async {
-  final prefs = await ref.watch(sharedPrefsProvider.future);
+final localCacheProvider = Provider<LocalCacheService>((ref) {
+  final prefs = ref.watch(sharedPrefsServiceReadyProvider);
   return LocalCacheService(prefs);
 });

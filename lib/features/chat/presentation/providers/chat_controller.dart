@@ -22,6 +22,6 @@ class ChatController extends StateNotifier<List<ChatMessageModel>> {
 /// Provider for chat controller
 final chatControllerProvider =
     StateNotifierProvider<ChatController, List<ChatMessageModel>>((ref) {
-      final repository = ref.watch(chatRepositoryProvider);
-      return ChatController(repository);
-    });
+  final repository = ref.watch(chatRepositoryProvider);
+  return ChatController(repository);
+});

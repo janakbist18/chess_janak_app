@@ -3,11 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// Chess game state notifier
 class ChessGameStateNotifier extends StateNotifier<Map<String, dynamic>> {
   ChessGameStateNotifier()
-    : super({
-        'fen': 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
-        'currentTurn': 'white',
-        'gameStatus': 'active',
-      });
+      : super({
+          'fen': 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+          'currentTurn': 'white',
+          'gameStatus': 'active',
+        });
 
   void updateFen(String fen) {
     state = {...state, 'fen': fen};
@@ -22,5 +22,5 @@ class ChessGameStateNotifier extends StateNotifier<Map<String, dynamic>> {
 /// Provider for chess game state
 final chessGameStateProvider =
     StateNotifierProvider<ChessGameStateNotifier, Map<String, dynamic>>((ref) {
-      return ChessGameStateNotifier();
-    });
+  return ChessGameStateNotifier();
+});

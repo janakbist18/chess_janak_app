@@ -9,13 +9,13 @@ class PlayerInfoBar extends StatelessWidget {
   final String? playerImage;
 
   const PlayerInfoBar({
-    Key? key,
+    super.key,
     required this.playerName,
     required this.rating,
     required this.timeRemaining,
     required this.isCurrentTurn,
     this.playerImage,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

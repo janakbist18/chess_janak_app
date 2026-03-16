@@ -22,5 +22,5 @@ class MoveHistoryNotifier extends StateNotifier<List<String>> {
 /// Provider for move history
 final moveHistoryProvider =
     StateNotifierProvider<MoveHistoryNotifier, List<String>>((ref) {
-      return MoveHistoryNotifier();
-    });
+  return MoveHistoryNotifier();
+});

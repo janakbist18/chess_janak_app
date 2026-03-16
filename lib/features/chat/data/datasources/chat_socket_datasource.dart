@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/chat_message_model.dart';
-import '../../../core/websocket/socket_client.dart';
-import '../../../core/websocket/socket_message.dart';
+import '../../../../core/websocket/socket_client.dart';
+import '../../../../core/websocket/socket_message.dart';
 
 /// Chat socket data source
 class ChatSocketDataSource {

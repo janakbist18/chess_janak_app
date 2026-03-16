@@ -3,11 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// Settings controller
 class SettingsController extends StateNotifier<Map<String, dynamic>> {
   SettingsController()
-    : super({
-        'soundEnabled': true,
-        'notificationsEnabled': true,
-        'themeMode': 'light',
-      });
+      : super({
+          'soundEnabled': true,
+          'notificationsEnabled': true,
+          'themeMode': 'light',
+        });
 
   void toggleSound() {
     state = {...state, 'soundEnabled': !(state['soundEnabled'] as bool)};
@@ -28,5 +28,5 @@ class SettingsController extends StateNotifier<Map<String, dynamic>> {
 /// Provider for settings controller
 final settingsControllerProvider =
     StateNotifierProvider<SettingsController, Map<String, dynamic>>((ref) {
-      return SettingsController();
-    });
+  return SettingsController();
+});
