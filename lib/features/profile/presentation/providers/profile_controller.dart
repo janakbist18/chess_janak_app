@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:state_notifier/state_notifier.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../../data/models/profile_model.dart';
 
@@ -30,6 +31,6 @@ class ProfileController extends StateNotifier<ProfileModel?> {
 /// Provider for profile controller
 final profileControllerProvider =
     StateNotifierProvider<ProfileController, ProfileModel?>((ref) {
-      final repository = ref.watch(profileRepositoryProvider);
-      return ProfileController(repository);
-    });
+  final repository = ref.watch(profileRepositoryProvider);
+  return ProfileController(repository);
+});

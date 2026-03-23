@@ -6,10 +6,10 @@ class ThemeSelectorTile extends StatelessWidget {
   final ValueChanged<String?> onChanged;
 
   const ThemeSelectorTile({
-    Key? key,
+    super.key,
     required this.currentOption,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

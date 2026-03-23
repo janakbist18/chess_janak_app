@@ -1,36 +1,38 @@
-name: Slack Notification
+name: Run Flutter Checks and Slack Notify
 
 on:
   push:
-    branches:
-      - main
-      - master
 
 jobs:
-  notify-slack:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Send Slack Notification
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze project
+        run: flutter analyze
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Slack notify
+        if: always()
         uses: slackapi/slack-github-action@v1.24.0
         with:
+          channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
           payload: |
             {
-              "text": "🚀 New code pushed to GitHub repository!"
+              "text": "${{ job.status == 'success' && ':white_check_mark: *Flutter Check Passed!* ✅' || ':x: *Flutter Check Failed!* ❌' }}\n\n*Repository:* ${{ github.repository }}\n*Branch:* ${{ github.ref_name }}\n*Workflow:* ${{ github.workflow }}\n*Logs:* <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|Click here to view workflow logs>"
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-          -name :slack notify
-          uses: slackapi/slack-github-action@v1.24.0
-          with:
-            channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
-          payload: |
-            {
-                "text": "${{ job.status == 'success' && ':white_check_mark: *Job Succeeded!*' || ':x: *Job Failed!*' }}\n*Repository:* ${{ github.repository }}\n*Branch:* ${{ github.ref }}\n*Commit:* ${{ github.sha }}\n*Workflow:* ${{ github.workflow }}\n*Run ID:* ${{ github.run_id }}"
-
-            }
-        env:
-            SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-
-        if: always() # Ensure the notification is sent regardless of job success or failure
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

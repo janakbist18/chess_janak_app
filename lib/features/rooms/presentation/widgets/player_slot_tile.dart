@@ -7,11 +7,11 @@ class PlayerSlotTile extends StatelessWidget {
   final bool isFilled;
 
   const PlayerSlotTile({
-    Key? key,
+    super.key,
     this.playerName,
     this.playerImage,
     this.isFilled = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

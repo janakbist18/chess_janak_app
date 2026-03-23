@@ -9,13 +9,13 @@ class CallControlsBar extends StatelessWidget {
   final bool isVideoEnabled;
 
   const CallControlsBar({
-    Key? key,
+    super.key,
     required this.onMutePressed,
     required this.onVideoPressed,
     required this.onEndCallPressed,
     this.isMuted = false,
     this.isVideoEnabled = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

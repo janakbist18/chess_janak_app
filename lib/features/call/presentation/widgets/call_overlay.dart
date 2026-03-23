@@ -8,12 +8,12 @@ class CallOverlay extends StatelessWidget {
   final VoidCallback onAccept;
 
   const CallOverlay({
-    Key? key,
+    super.key,
     required this.opponentName,
     required this.callStatus,
     required this.onDecline,
     required this.onAccept,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

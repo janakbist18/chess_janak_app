@@ -5,8 +5,7 @@ class TypingIndicator extends StatelessWidget {
   final String? typingUserName;
   final bool isVisible;
 
-  const TypingIndicator({Key? key, this.typingUserName, this.isVisible = true})
-    : super(key: key);
+  const TypingIndicator({super.key, this.typingUserName, this.isVisible = true});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,7 @@ class TypingIndicator extends StatelessWidget {
 class MessageDot extends StatefulWidget {
   final int delay;
 
-  const MessageDot({Key? key, required this.delay}) : super(key: key);
+  const MessageDot({super.key, required this.delay});
 
   @override
   State<MessageDot> createState() => _MessageDotState();

@@ -8,6 +8,8 @@ class AuthUser {
   final bool isEmailVerified;
   final DateTime createdAt;
   final DateTime updatedAt;
+  final String? accessToken;
+  final String? refreshToken;
 
   AuthUser({
     required this.id,
@@ -18,5 +20,7 @@ class AuthUser {
     this.isEmailVerified = false,
     required this.createdAt,
     required this.updatedAt,
+    this.accessToken,
+    this.refreshToken,
   });
 }

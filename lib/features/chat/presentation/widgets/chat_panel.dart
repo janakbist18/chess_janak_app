@@ -6,10 +6,10 @@ class ChatPanel extends StatefulWidget {
   final Function(String) onSendMessage;
 
   const ChatPanel({
-    Key? key,
+    super.key,
     required this.messages,
     required this.onSendMessage,
-  }) : super(key: key);
+  });
 
   @override
   State<ChatPanel> createState() => _ChatPanelState();

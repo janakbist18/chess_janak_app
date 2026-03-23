@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/chess_move_model.dart';
-import '../../../core/websocket/socket_client.dart';
-import '../../../core/websocket/socket_message.dart';
+import '../../../../core/websocket/socket_client.dart';
+import '../../../../core/websocket/socket_message.dart';
 
 /// Chess socket data source
 class ChessSocketDataSource {

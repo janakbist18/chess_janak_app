@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:state_notifier/state_notifier.dart';
 import '../../data/models/chat_message_model.dart';
 import '../../data/repositories/chat_repository.dart';
 
@@ -22,6 +23,6 @@ class ChatController extends StateNotifier<List<ChatMessageModel>> {
 /// Provider for chat controller
 final chatControllerProvider =
     StateNotifierProvider<ChatController, List<ChatMessageModel>>((ref) {
-      final repository = ref.watch(chatRepositoryProvider);
-      return ChatController(repository);
-    });
+  final repository = ref.watch(chatRepositoryProvider);
+  return ChatController(repository);
+});

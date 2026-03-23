@@ -6,10 +6,10 @@ class CapturedPiecesWidget extends StatelessWidget {
   final List<String> blackPieces;
 
   const CapturedPiecesWidget({
-    Key? key,
+    super.key,
     required this.whitePieces,
     required this.blackPieces,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

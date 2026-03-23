@@ -9,13 +9,13 @@ class MessageBubble extends StatelessWidget {
   final DateTime sentAt;
 
   const MessageBubble({
-    Key? key,
+    super.key,
     required this.message,
     required this.senderName,
     required this.isSentByCurrentUser,
     this.senderImage,
     required this.sentAt,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

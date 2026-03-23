@@ -1,44 +1,85 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../datasources/chess_remote_datasource.dart';
-import '../datasources/chess_socket_datasource.dart';
 import '../models/chess_move_model.dart';
 import '../models/game_state_model.dart';
+import '../models/game_history_model.dart';
+import '../models/player_model.dart';
 
-/// Chess repository
+/// Chess repository for handling game logic and data
 class ChessRepository {
   final ChessRemoteDataSource _remoteDataSource;
-  final ChessSocketDataSource _socketDataSource;
 
-  ChessRepository(this._remoteDataSource, this._socketDataSource);
+  ChessRepository(this._remoteDataSource);
 
-  Future<GameStateModel> getGameState(String gameId) async {
-    return await _remoteDataSource.getGameState(gameId);
+  /// Get current game state
+  Future<GameStateModel> getGameState(String gameId) {
+    return _remoteDataSource.getGameState(gameId);
   }
 
-  Future<void> makeMove(String gameId, ChessMoveModel move) async {
-    return await _remoteDataSource.makeMove(gameId, move);
+  /// Make a move
+  Future<GameStateModel> makeMove(String gameId, ChessMoveModel move) {
+    return _remoteDataSource.makeMove(gameId, move);
   }
 
-  void subscribeToGameUpdates(String gameId, Function callback) {
-    _socketDataSource.subscribeToGameUpdates(gameId, callback);
+  /// Get move history
+  Future<List<ChessMoveModel>> getMoveHistory(String gameId) {
+    return _remoteDataSource.getMoveHistory(gameId);
   }
 
-  void unsubscribeFromGameUpdates(Function callback) {
-    _socketDataSource.unsubscribeFromGameUpdates(callback);
+  /// Get game history
+  Future<List<GameHistoryModel>> getGameHistory(String playerId) {
+    return _remoteDataSource.getGameHistory(playerId);
   }
 
-  void sendMove(String gameId, ChessMoveModel move) {
-    _socketDataSource.sendMove(gameId, move);
+  /// Create a new game room
+  Future<Map<String, dynamic>> createRoom({
+    required String gameMode,
+    int? timeLimit,
+  }) {
+    return _remoteDataSource.createRoom(
+      gameMode: gameMode,
+      timeLimit: timeLimit,
+    );
   }
 
-  void resignGame(String gameId) {
-    _socketDataSource.resignGame(gameId);
+  /// Join a game room
+  Future<Map<String, dynamic>> joinRoom(String inviteCode) {
+    return _remoteDataSource.joinRoom(inviteCode);
+  }
+
+  /// Get user's game rooms
+  Future<List<Map<String, dynamic>>> getUserRooms() {
+    return _remoteDataSource.getUserRooms();
+  }
+
+  /// Get room details
+  Future<Map<String, dynamic>> getRoomDetails(String roomId) {
+    return _remoteDataSource.getRoomDetails(roomId);
+  }
+
+  /// Lookup invite code
+  Future<Map<String, dynamic>> lookupInvite(String inviteCode) {
+    return _remoteDataSource.lookupInvite(inviteCode);
+  }
+
+  /// Get player profile
+  Future<PlayerModel> getPlayerProfile(String playerId) {
+    return _remoteDataSource.getPlayerProfile(playerId);
+  }
+
+  /// Get leaderboard
+  Future<List<PlayerModel>> getLeaderboard({int limit = 50}) {
+    return _remoteDataSource.getLeaderboard(limit: limit);
+  }
+
+  /// Find random opponent
+  Future<PlayerModel> findRandomOpponent() {
+    return _remoteDataSource.findRandomOpponent();
   }
 }
 
 /// Provider for chess repository
 final chessRepositoryProvider = Provider<ChessRepository>((ref) {
   final remoteDataSource = ref.watch(chessRemoteDataSourceProvider);
-  final socketDataSource = ref.watch(chessSocketDataSourceProvider);
-  return ChessRepository(remoteDataSource, socketDataSource);
+  return ChessRepository(remoteDataSource);
 });
